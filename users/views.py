@@ -23,7 +23,6 @@ from django.utils import timezone
 from .models import User
 from .forms import UserForm, LoginForm, RegisterForm
 from django.conf import settings
-from warehouse.models import UserWarehouse, Warehouse
 
 
 def user_login(request):
@@ -128,14 +127,7 @@ def user_create_view(request):
             instance.is_active = 1
             instance.set_password(instance.password)
             user = instance
-            instance = instance.save()
-            
-            # Saves the warehouse in warehouse_userwarehouse table
-            warehouse = Warehouse.objects.filter(id=int(request.POST.get('warehouse'))).first()
-    
-            w = UserWarehouse(warehouse=warehouse, user=user)
-            w.save()
-            
+            instance = instance.save() 
             messages.success(request, _("User added successfully!"))
 
             if request.POST.get('save_user'):
@@ -179,16 +171,6 @@ def user_update_view(request, pk):
             instance.set_password(instance.password)
             user = instance
             instance = instance.save()
-
-            # Deletes existing warehouse_userwarehouse data
-            UserWarehouse.objects.filter(user=user).delete()
-
-            # Saves the warehouse in warehouse_userwarehouse table
-            warehouse = Warehouse.objects.filter(id=int(request.POST.get('warehouse'))).first()
-    
-            w = UserWarehouse(warehouse=warehouse, user=user)
-            w.save()
-
             messages.success(request, _("User updated successfully!"))
 
             if request.POST.get('save_user'):

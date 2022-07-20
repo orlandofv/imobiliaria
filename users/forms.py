@@ -10,8 +10,6 @@ from crispy_forms.bootstrap import (FieldWithButtons, StrictButton, AccordionGro
 TabHolder, Tab, Div)
 from crispy_bootstrap5.bootstrap5 import BS5Accordion
 
-from warehouse.models import Warehouse
-
 
 class LoginForm(forms.ModelForm):
     email = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Email'}))
@@ -35,11 +33,7 @@ class UserForm(forms.ModelForm):
     email = forms.CharField(label='Email', max_length=100, widget=forms.EmailInput(attrs={'placeholder': _('Enter Email')}))
     password = forms.CharField(label='Password', widget=forms.PasswordInput(attrs={'placeholder': _('Enter Password')}))
     confirm_password = forms.CharField(label='Confirm Password', widget=forms.PasswordInput(attrs={'placeholder': _('Confirm Password')}))
-    warehouse = forms.ModelChoiceField(label='Warehouse',
-    queryset=Warehouse.objects.filter(active_status=1), required=False)
-    date_joined = forms.DateTimeField(required=False)
     
-
     def __init__(self, *args, **kwargs):
         super(UserForm, self).__init__(*args, **kwargs)
         
@@ -68,7 +62,6 @@ class UserForm(forms.ModelForm):
                 ),
                 
                 Row(
-                    Column('warehouse', css_class='form-group col-md-3 mb-0'),
                     Column('first_active_date', css_class='form-group col-md-3 mb-0'),
                     Column('last_active_date', css_class='form-group col-md-3 mb-0'),
                     Column('employee', css_class='form-group col-md-3 mb-0'),

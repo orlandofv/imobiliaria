@@ -13,33 +13,30 @@
 
 {% block content %}
     
-    <div class="contentContainer">
+    <div class="col-md-9 ms-sm-auto col-lg-10 px-md-4 mt-2">
         <div class="row">
             <div class="col-md-12">
                 <h1>{{ user.name }}</h1>
                 <a href="{% url 'users:user_create' %}" 
-                    class="fa fa-plus-circle btn btn-primary">
+                    class="fa fa-plus btn btn-primary">
                    
                 </a> 
                 <a href="{% url 'users:user_update' user.pk %}" 
-                    class="fa fa-pencil btn btn-secondary">
+                    class="fas fa-edit btn btn-secondary">
                      
                 </a>
                 <a href="{% url 'users:user_list' %}" 
                     class="fa fa-list btn btn-info">
                     {% trans 'List' %} 
                 </a>
-                
-                <button class="btn btn-primary fa fa-copy" onclick="cloneUser('{% url 'users:user_create' %}');">
-                    Clone
-                </button>
+             
                 <hr>
                 <h6>{% trans 'Name' %}: <strong> <span>{{ user.name }}</span></strong></h6>
                 <h6>{% trans 'Parent' %}: <strong> <span>{{ parent_user }}</span></strong></h6>
                 <h6>{% trans 'Active' %}: <strong> 
                     <span>  
                         {% if user.is_active %} {% trans 'Active' %}
-                        {% else %} {% trans 'Not Active' %}
+                        {% else %} {% trans 'Inactive' %}
                         {% endif %}
                     </span> </strong>
                 </h6>

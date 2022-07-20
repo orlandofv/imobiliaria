@@ -11,7 +11,7 @@
     
     {% csrf_token %}
 
-    <div class="contentContainer">
+    <div class="col-md-9 ms-sm-auto col-lg-10 px-md-4 mt-2">
         {% url 'users:user_delete' as delete %}
         {% url 'users:user_create' as create %}
         {% url 'users:user_list' as redirect %}
@@ -59,7 +59,7 @@
                         </td>
                         <td>
                             <a href="{% url 'users:user_update' obj.pk %}" 
-                                    class="fa fa-pencil btn btn-secondary">
+                                    class="fas fa-edit btn btn-secondary">
                                      
                             </a> 
                             <a href="{% url 'users:user_details' obj.pk %}" 

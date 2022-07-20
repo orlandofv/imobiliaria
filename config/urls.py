@@ -18,7 +18,6 @@ from django.contrib.auth import views as auth_views
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
-from users import views as user_views
 
 
 
@@ -30,12 +29,8 @@ urlpatterns = [
     path('reset/done/', auth_views.PasswordResetCompleteView.as_view(), name='password_reset_complete',),
     # path('accounts/', include('django.contrib.auth.urls')), # new
     path('admin/', admin.site.urls),
-    path('', include('asset_app.urls')),
-    path('', include('isis.urls')),
-    path('', include('supplier.urls')),
-    path('', include('warehouse.urls')),
-    path('', include('stock.urls')),
     path('', include('users.urls')),
+    path('', include('settings.urls')),
     path('__debug__/', include('debug_toolbar.urls')),
 
 ]

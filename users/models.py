@@ -8,7 +8,6 @@ from django.utils.translation import ugettext as _
 from django.core import exceptions
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-from phonenumber_field.modelfields import PhoneNumberField
 from django.conf import settings
 from django.utils import timezone
 from django.template.defaultfilters import slugify # new
